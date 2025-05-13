@@ -1,0 +1,15 @@
+SELECT
+  sales.date_date,
+  sales.products_id,
+  SUM(sales.quantity) AS total_quantity,
+  ROUND (SUM(sales.revenue), 2) AS total_revenue,
+  products.purchase_price,
+  ROUND (SUM(sales.quantity * products.purchase_price), 2) AS total_purchase_cost,
+  ROUND (SUM(sales.revenue - (sales.quantity * products.purchase_price)), 2) AS total_margin
+FROM {{ ref('stg_raw__sales') }} AS sales
+LEFT JOIN {{ ref('stg_raw__product') }} AS products
+  ON sales.products_id = products.products_id
+GROUP BY
+  sales.date_date,
+  sales.products_id,
+  products.purchase_price
