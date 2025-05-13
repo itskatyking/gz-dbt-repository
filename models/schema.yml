@@ -2,11 +2,11 @@ version: 2
 
 sources:
   - name: raw
-    schema: raw_data_circle
+    schema: gz_raw_data
     tables:
       - name: sales
-        identifier: raw_cc_sales
-      - name: stock
-        identifier: raw_cc_stock
-      - name: parcel
-        identifier: raw_cc_parcel
+        identifier: raw_gz_sales
+      - name: product
+        identifier: raw_gz_product
+      - name: ship
+        identifier: raw_gz_ship
