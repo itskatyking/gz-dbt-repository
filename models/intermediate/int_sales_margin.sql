@@ -1,5 +1,6 @@
 SELECT
   sales.date_date,
+  sales.orders_id,
   sales.products_id,
   SUM(sales.quantity) AS total_quantity,
   ROUND (SUM(sales.revenue), 2) AS total_revenue,
@@ -11,5 +12,6 @@ LEFT JOIN {{ ref('stg_raw__product') }} AS products
   ON sales.products_id = products.products_id
 GROUP BY
   sales.date_date,
+  sales.orders_id,
   sales.products_id,
   products.purchase_price
